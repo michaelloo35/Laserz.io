@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: f513b32721fc0bb47a4daed2af38d098
+guid: 9e774eb80e1dbd94396fe3e67e5f458c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -867290966753932014
-    second: Player2Movement_0
-  - first:
-      213: 1573497711433649491
-    second: Player2Movement_1
-  - first:
-      213: -6213664857100593788
-    second: Player2Movement_2
+      213: 2410635517405602792
+    second: Character1_0
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -40,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 2
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -49,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,55 +89,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player2Movement_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 30
-        width: 30
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 602ade61a0a7c574987899d2e6a57330
-      internalID: -867290966753932014
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player2Movement_1
-      rect:
-        serializedVersion: 2
-        x: 30
-        y: 30
-        width: 30
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a0d40458149536b4db6f8105decc6dba
-      internalID: 1573497711433649491
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player2Movement_2
+      name: Character1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 30
-        height: 30
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,8 +103,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f70025f3fbb48a24e934a20146c8e20d
-      internalID: -6213664857100593788
+      spriteID: 2eb28a5753681d944b8e0ec29d0a3f8f
+      internalID: 2410635517405602792
       vertices: []
       indices: 
       edges: []
