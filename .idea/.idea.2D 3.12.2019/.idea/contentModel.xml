@@ -21,6 +21,7 @@
             </e>
           </e>
           <e p="PlayerSpawner" t="Include">
+            <e p="GlobalObjects.cs" t="Include" />
             <e p="PlayerSpawner.cs" t="Include" />
           </e>
         </e>

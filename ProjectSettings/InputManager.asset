@@ -142,12 +142,12 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
-    dead: 0.5
+    dead: 0.001
     sensitivity: 3
     snap: 1
     invert: 0
     type: 2
-    axis: 5
+    axis: 2
     joyNum: 1
   - serializedVersion: 3
     m_Name: Fire_1
@@ -158,10 +158,10 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
-    dead: 0.5
+    dead: 0.001
     sensitivity: 3
     snap: 1
     invert: 0
     type: 2
-    axis: 5
+    axis: 9
     joyNum: 2
