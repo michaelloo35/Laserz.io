@@ -5,11 +5,15 @@ public class PlayerController : MonoBehaviour
 {
     [FormerlySerializedAs("playerName")] public int playerId;
 
+    [FormerlySerializedAs("PlayerStatus")] public PlayerStatus playerStatus;
     // Update is called once per frame
     void Update()
     {
-        PlayerMoveInputs playerMoveInputs = new PlayerMoveInputs(playerId);
-        MoveXY(playerMoveInputs);
+        if (!playerStatus.blocked)
+        {
+            PlayerMoveInputs playerMoveInputs = new PlayerMoveInputs(playerId);
+            MoveXY(playerMoveInputs);
+        }
     }
 
     private void MoveXY(PlayerMoveInputs playerMoveInputs)

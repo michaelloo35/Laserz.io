@@ -1,15 +1,19 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WeaponController : MonoBehaviour
 {
     public int playerId;
+    [FormerlySerializedAs("PlayerStatus")] public PlayerStatus playerStatus;
 
     void Update()
     {
-        PlayerAimInputs playerAimInputs = new PlayerAimInputs(playerId);
-
-        AimWeapon(playerAimInputs);
+        if (!playerStatus.blocked)
+        {
+            PlayerAimInputs playerAimInputs = new PlayerAimInputs(playerId);
+            AimWeapon(playerAimInputs);
+        }
     }
 
     private void AimWeapon(PlayerAimInputs playerAimInputs)
