@@ -49,6 +49,7 @@ public class Laser : MonoBehaviour
         if (hitInfo)
         {
             ImpactEffect(hitInfo);
+            hitInfo.collider.gameObject.GetComponent<PlayerController>().Die();
         }
     }
 

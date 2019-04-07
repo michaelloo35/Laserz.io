@@ -80,6 +80,7 @@ public class PlayerSpawner : MonoBehaviour
         PlayerController playerController = player.AddComponent<PlayerController>();
         playerController.playerId = id;
         playerController.playerStatus = playerStatus;
+        playerController.deathEffectTemplate = GlobalObjects.deathAnimation;
     }
 
     private void SetUpPlayerCollider(GameObject player)
