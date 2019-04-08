@@ -2,12 +2,10 @@
 
 public class PlayerSpawner : MonoBehaviour
 {
-    private GlobalObjects GlobalObjects;
-
     // Start is called before the first frame update
     void Start()
     {
-        GlobalObjects = new GlobalObjects();
+        GlobalObjects.init();
         SpawnPlayers(2);
     }
 
@@ -18,28 +16,7 @@ public class PlayerSpawner : MonoBehaviour
             GameObject player = new GameObject($"Player{id}");
             PlayerStatus playerStatus = new PlayerStatus();
             SetUpPlayer(player, id, playerStatus);
-
-            GameObject weapon = new GameObject("Laser");
-
-            SetUpWeapon(weapon, id, player, playerStatus);
         }
-    }
-
-    private void SetUpWeapon(GameObject weapon, int id, GameObject player, PlayerStatus playerStatus)
-    {
-        SetUpObjectSprite(weapon, "Graphic/laser");
-        SetUpWeaponController(weapon, id, playerStatus);
-        SetUpWeaponPosition(weapon, player);
-
-        GameObject firePoint = new GameObject("FirePoint");
-        firePoint.transform.parent = weapon.transform;
-        firePoint.transform.localPosition = new Vector2(0.0f, 0.05f * weapon.transform.localScale.y);
-
-        Laser laserScript = weapon.AddComponent<Laser>();
-        laserScript.firePoint = firePoint.transform;
-        laserScript.playerId = id;
-        laserScript.impactEffectTemplate = GlobalObjects.smokeImpactEffect;
-        laserScript.playerStatus = playerStatus;
     }
 
     private void SetUpPlayer(GameObject player, int id, PlayerStatus playerStatus)
@@ -50,28 +27,14 @@ public class PlayerSpawner : MonoBehaviour
         SetUpPlayerCollider(player);
     }
 
-    private static void SetUpWeaponPosition(GameObject weapon, GameObject parent)
-    {
-        weapon.transform.parent = parent.transform;
-        weapon.transform.localPosition = new Vector3(0.0f, 0.5f);
-        weapon.transform.localScale = new Vector3(2.0f, 2.0f);
-    }
-
-    private static void SetUpWeaponController(GameObject weapon, int id, PlayerStatus playerStatus)
-    {
-        WeaponController weaponController = weapon.AddComponent<WeaponController>();
-        weaponController.playerId = id;
-        weaponController.playerStatus = playerStatus;
-    }
-
     private void SetUpPlayerPosition(GameObject player, int id)
     {
         player.transform.localPosition = new Vector3(0.0f + id, 0.0f);
     }
 
-    private void SetUpObjectSprite(GameObject player, string spritePath)
+    private void SetUpObjectSprite(GameObject obj, string spritePath)
     {
-        SpriteRenderer playerSpriteRenderer = player.AddComponent<SpriteRenderer>();
+        SpriteRenderer playerSpriteRenderer = obj.AddComponent<SpriteRenderer>();
         playerSpriteRenderer.sprite = Resources.Load<Sprite>(spritePath);
     }
 
@@ -80,7 +43,6 @@ public class PlayerSpawner : MonoBehaviour
         PlayerController playerController = player.AddComponent<PlayerController>();
         playerController.playerId = id;
         playerController.playerStatus = playerStatus;
-        playerController.deathEffectTemplate = GlobalObjects.deathAnimation;
     }
 
     private void SetUpPlayerCollider(GameObject player)

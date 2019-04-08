@@ -10,15 +10,22 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="Player" t="Include">
-            <e p="movement" t="Include">
-              <e p="PlayerController.cs" t="Include" />
-              <e p="PlayerMoveInputs.cs" t="Include" />
+            <e p="Data" t="Include">
+              <e p="PlayerInfo.cs" t="Include" />
+              <e p="PlayerStatus.cs" t="Include" />
             </e>
-            <e p="PlayerStatus.cs" t="Include" />
+            <e p="movement" t="Include">
+              <e p="PlayerMoveInputs.cs" t="Include" />
+              <e p="PlayerMovement.cs" t="Include" />
+            </e>
+            <e p="PlayerController.cs" t="Include" />
             <e p="Weapon" t="Include">
-              <e p="Laser.cs" t="Include" />
+              <e p="Laser" t="Include">
+                <e p="Laser.cs" t="Include" />
+              </e>
               <e p="PlayerAimInputs.cs" t="Include" />
-              <e p="WeaponController.cs" t="Include" />
+              <e p="PlayerShootInputs.cs" t="Include" />
+              <e p="Weapon.cs" t="Include" />
             </e>
           </e>
           <e p="PlayerSpawner" t="Include">
