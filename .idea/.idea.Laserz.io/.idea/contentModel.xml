@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\Michal\.Rider2018.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Michal\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_2D 3.12.2019.595920946.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Michal\Unity\2D 3.12.2019" t="IncludeRecursive">
+    <e p="C:\Users\Michal\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_Laserz.io.-753838165.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Michal\Desktop\Laserz.io" t="IncludeRecursive">
       <e p=".git\info\exclude" t="IncludeRecursive" />
-      <e p="2D 3.12.2019.sln" t="IncludeFlat" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
@@ -17,7 +16,7 @@
               <e p="PlayerInfo.cs" t="Include" />
               <e p="PlayerStatus.cs" t="Include" />
             </e>
-            <e p="movement" t="Include">
+            <e p="Movement" t="Include">
               <e p="PlayerMoveInputs.cs" t="Include" />
               <e p="PlayerMovement.cs" t="Include" />
             </e>
@@ -62,6 +61,7 @@
           </e>
         </e>
       </e>
+      <e p="Laserz.io.sln" t="IncludeFlat" />
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
