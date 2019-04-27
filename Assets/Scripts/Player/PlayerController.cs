@@ -1,22 +1,21 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 using Random = System.Random;
 
 public class PlayerController : MonoBehaviour
 {
-    public int playerId;
+    private int playerId;
     public PlayerStatus playerStatus;
     public PlayerMovement playerMovement;
     public Weapon weapon;
+    public GameObject deathAnimationPrefab;
 
 
-    private void Start()
+    public void Initialize(int playerId)
     {
+        this.playerId = playerId;
         playerMovement = new PlayerMovement(playerId);
-        weapon =
-            new GameObject("Laser")
-                .AddComponent<Laser>()
-                .Initialize(gameObject, playerId, playerStatus);
+        playerStatus = new PlayerStatus();
+        weapon.Initialize(playerId, playerStatus);
     }
 
     public void Update()
@@ -34,7 +33,7 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         playerStatus.dead = true;
-        GameObject deathEffect = Instantiate(GlobalObjects.deathAnimation,
+        GameObject deathEffect = Instantiate(deathAnimationPrefab,
             new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
         Destroy(deathEffect, 3.0f);
         Respawn();

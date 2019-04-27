@@ -3,21 +3,19 @@ using UnityEngine;
 
 public class Laser : Weapon
 {
-    public int playerId;
     public PlayerStatus playerStatus;
     public Transform firePoint;
     public float fireRate = 5f;
+    public GameObject impactEffectPrefab;
+    private int playerId;
     private float charge;
     private float timeToNextFire;
 
 
-    public Weapon Initialize(GameObject parent, int playerId, PlayerStatus playerStatus)
+    public override Weapon Initialize(int playerId, PlayerStatus playerStatus)
     {
         this.playerId = playerId;
         this.playerStatus = playerStatus;
-        SetUpWeaponSprite("Graphic/laser");
-        SetUpWeaponPosition(parent);
-        SetUpFirePoint();
         return this;
     }
 
@@ -98,7 +96,9 @@ public class Laser : Weapon
 
     private void ImpactEffect(RaycastHit2D hitInfo)
     {
-        GameObject impactEffect = Instantiate(GlobalObjects.smokeImpactEffect, hitInfo.point,
+        var impactEffect = Instantiate(
+            impactEffectPrefab,
+            hitInfo.point,
             Quaternion.FromToRotation(transform.up, hitInfo.normal) * transform.rotation);
         Destroy(impactEffect, 0.8f);
     }
@@ -117,26 +117,5 @@ public class Laser : Weapon
         lr.SetPosition(0, start);
         lr.SetPosition(1, end);
         Destroy(myLine, duration);
-    }
-
-    private void SetUpFirePoint()
-    {
-        GameObject fp = new GameObject("FirePoint");
-        fp.transform.parent = gameObject.transform;
-        fp.transform.localPosition = new Vector2(0.0f, 0.05f * gameObject.transform.localScale.y);
-        firePoint = fp.transform;
-    }
-
-    private void SetUpWeaponSprite(string spritePath)
-    {
-        SpriteRenderer playerSpriteRenderer = gameObject.AddComponent<SpriteRenderer>();
-        playerSpriteRenderer.sprite = Resources.Load<Sprite>(spritePath);
-    }
-
-    private void SetUpWeaponPosition(GameObject parent)
-    {
-        gameObject.transform.parent = parent.transform;
-        gameObject.transform.localPosition = new Vector3(0.0f, 0.5f);
-        gameObject.transform.localScale = new Vector3(2.0f, 2.0f);
     }
 }
