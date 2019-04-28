@@ -6,6 +6,7 @@ public class Laser : Weapon
     public PlayerStatus playerStatus;
     public Transform firePoint;
     public float fireRate = 5f;
+    public float damage = 45f;
     public GameObject impactEffectPrefab;
     private int playerId;
     private float charge;
@@ -90,7 +91,7 @@ public class Laser : Weapon
         if (hitInfo)
         {
             ImpactEffect(hitInfo);
-            hitInfo.collider.gameObject.GetComponent<PlayerController>().Die();
+            hitInfo.collider.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
         }
     }
 

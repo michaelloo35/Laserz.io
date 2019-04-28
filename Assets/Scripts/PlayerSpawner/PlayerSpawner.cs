@@ -2,7 +2,7 @@
 
 public class PlayerSpawner : MonoBehaviour
 {
-    public GameObject playerPrefab;
+    public PlayerController playerPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -14,9 +14,7 @@ public class PlayerSpawner : MonoBehaviour
     {
         for (int id = 0; id < numberOfPlayers; id++)
         {
-            Instantiate(playerPrefab, new Vector3(0, id), Quaternion.identity)
-                .GetComponent<PlayerController>()
-                .Initialize(id);
+            Instantiate(playerPrefab, new Vector3(0, id), Quaternion.identity).Initialize(id);
         }
     }
 }
