@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour
 
     public void Initialize(int playerId)
     {
-        playerName.SetText("PLAYER " + id);
         id = playerId;
+        playerName.SetText("PLAYER " + id);
         playerMovement = new PlayerMovement(playerId);
         playerStatus = new PlayerStatus();
         weapon.Initialize(playerId, playerStatus);
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
+
         if (!playerStatus.blocked)
         {
             playerMovement.Move(transform);
