@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -64,10 +65,10 @@ public class PlayerController : MonoBehaviour
 
     private void Respawn()
     {
-        var random = new Random();
+        var random = new Random(Convert.ToInt32(Time.time));
         transform.position = new Vector3(
-            random.Next() * (float) random.NextDouble() % 1,
-            random.Next() * (float) random.NextDouble() % 1);
+            random.Next() * (float) random.NextDouble() % 4,
+            random.Next() * (float) random.NextDouble() % 3);
         health = MAX_HEALTH;
         healthBar.fillAmount = health / MAX_HEALTH;
     }
