@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
     public Transform[] playerPositions = new Transform[0];
-    public Camera camera;
+    public Camera mainCamera;
 
 
     public void Initialize(Transform[] playerPositions)
@@ -17,7 +15,7 @@ public class CameraManager : MonoBehaviour
     void Update()
     {
         if (playerPositions.Length > 0)
-            camera.transform.position = getAveragePosition(playerPositions);
+            mainCamera.transform.position = getAveragePosition(playerPositions);
     }
 
 

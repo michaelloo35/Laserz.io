@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPositions: []
-  camera: {fileID: 1799424153}
+  mainCamera: {fileID: 1799424153}
 --- !u!1 &1799424151
 GameObject:
   m_ObjectHideFlags: 0
