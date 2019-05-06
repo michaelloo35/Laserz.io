@@ -28,6 +28,9 @@
               </e>
               <e p="PlayerAimInputs.cs" t="Include" />
               <e p="PlayerShootInputs.cs" t="Include" />
+              <e p="Shotgun" t="Include">
+                <e p="Shotgun.cs" t="Include" />
+              </e>
               <e p="Weapon.cs" t="Include" />
             </e>
           </e>
