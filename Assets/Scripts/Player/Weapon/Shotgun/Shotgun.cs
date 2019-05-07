@@ -89,7 +89,7 @@ public class Shotgun : Weapon
             var shootAngle = Quaternion.Euler(0, 0, i * density) * firePoint.up;
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, shootAngle, shootingDistance);
 
-            if (hitInfo)
+            if (hitInfo && hitInfo.collider.CompareTag("Player"))
             {
                 var player = hitInfo.collider.gameObject.GetComponent<PlayerController>();
                 if (dmgMap.ContainsKey(player))

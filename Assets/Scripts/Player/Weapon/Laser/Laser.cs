@@ -91,7 +91,8 @@ public class Laser : Weapon
         if (hitInfo)
         {
             ImpactEffect(hitInfo);
-            hitInfo.collider.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
+            if(hitInfo.collider.CompareTag("Player"))
+                hitInfo.collider.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
         }
     }
 
