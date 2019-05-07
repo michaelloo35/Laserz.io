@@ -181,9 +181,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   columns: 16
   rows: 12
-  wallCount:
-    minimum: 50
-    maximum: 80
   floorTiles:
   - {fileID: 4938751594085673942, guid: d1a95a1a9f94df3458535a31eb7bcd92, type: 3}
   - {fileID: 3466875405896600608, guid: d182fd021713d8b478392da97fb4cb5a, type: 3}
@@ -191,6 +188,10 @@ MonoBehaviour:
   - {fileID: 4904000147238975310, guid: 6cb20c272c190b04d8f4ab89c0d6e3c5, type: 3}
   wallTile: {fileID: 2865104679466936612, guid: bfaaa96c72dc0d8498b0b8065722583d,
     type: 3}
+  spawnerPrefab: {fileID: 8750271871798995639, guid: fa24a86ae75b9bd4a8284c4bafcffb25,
+    type: 3}
+  spawners: []
+  spawnersR: 1.5
 --- !u!114 &665793192
 MonoBehaviour:
   m_ObjectHideFlags: 0

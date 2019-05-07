@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -22,7 +21,13 @@ public class BoardManager : MonoBehaviour
 
     private List<Vector3> gridPositions = new List<Vector3>();
 
-    [Serializable]
+    public GameObject spawnerPrefab;
+    public List<GameObject> spawners = new List<GameObject>();
+    public float spawnersR;
+
+    public Vector2 downLeftCorner = new Vector2();
+    public Vector2 upRightCorner = new Vector2();
+
     public class Count
     {
         public int minimum;
@@ -39,11 +44,11 @@ public class BoardManager : MonoBehaviour
     {
         gridPositions.Clear();
 
-        for (int x = 1; x < columns - 1; x++)
+        for (int x = 0; x < columns - 1; x++)
         {
-            for (int y = 1; y < rows - 1; y++)
+            for (int y = 0; y < rows - 1; y++)
             {
-                gridPositions.Add(new Vector3(x * tileSize, y * tileSize, 0f));
+                gridPositions.Add(new Vector3(x * tileSize, y * tileSize));
             }
         }
     }
@@ -60,9 +65,21 @@ public class BoardManager : MonoBehaviour
                 if (x == -1 || x == columns || y == -1 || y == rows)
                 {
                     toInstantiate = wallTile;
+                    if (x < downLeftCorner.x)
+                        downLeftCorner.x = x;
+
+                    if (y < downLeftCorner.y)
+                        downLeftCorner.y = y;
+
+
+                    if (x > upRightCorner.x)
+                        upRightCorner.x = x;
+
+                    if (y > upRightCorner.y)
+                        upRightCorner.y = y;
                 }
 
-                GameObject instance = Instantiate(toInstantiate, new Vector3(x * tileSize, y * tileSize, 0f),
+                GameObject instance = Instantiate(toInstantiate, new Vector3(x * tileSize, y * tileSize),
                     Quaternion.identity);
 
                 instance.transform.SetParent(boardHolder);
@@ -98,7 +115,22 @@ public class BoardManager : MonoBehaviour
     private void SetupScene()
     {
         BoardSetup();
+        InitialiseSpawnPoints();
 //        InitialiseList();
 //        LayoutObjectAtRandom(wallTile, wallCount.minimum, wallCount.maximum);
+    }
+
+    private void InitialiseSpawnPoints()
+    {
+        Vector3 center = (downLeftCorner * tileSize + upRightCorner * tileSize) / 2.0f;
+
+        for (int i = 0; i < 5; i++)
+        {
+            var x = center.x + spawnersR * Math.Cos(2 * Math.PI * i / 5);
+            var y = center.y + spawnersR * Math.Sin(2 * Math.PI * i / 5);
+
+            var spawner = Instantiate(spawnerPrefab, new Vector3((float) x, (float) y), Quaternion.identity);
+            spawners.Add(spawner);
+        }
     }
 }
