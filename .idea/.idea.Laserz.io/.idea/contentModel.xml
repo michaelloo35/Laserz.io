@@ -13,6 +13,12 @@
           <e p="Board" t="Include">
             <e p="BoardManager.cs" t="Include" />
           </e>
+          <e p="Enemy" t="Include">
+            <e p="Data" t="Include">
+              <e p="EnemyStatus.cs" t="Include" />
+            </e>
+            <e p="EnemyController.cs" t="Include" />
+          </e>
           <e p="Menu" t="Include">
             <e p="Menu.cs" t="Include" />
           </e>

@@ -153,6 +153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 5700988718832972714, guid: e4b06a3748f24d54f94c716539788ed9,
     type: 3}
+  enemyPrefab: {fileID: 5838763901663286219, guid: 6fe6da7ea55ef3d49bccf75b4ab7610c,
+    type: 3}
 --- !u!4 &665793190
 Transform:
   m_ObjectHideFlags: 0
@@ -192,6 +194,8 @@ MonoBehaviour:
     type: 3}
   spawners: []
   spawnersR: 1.5
+  downLeftCorner: {x: 0, y: 0}
+  upRightCorner: {x: 0, y: 0}
 --- !u!114 &665793192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +254,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.2
+  orthographic size: 2.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
