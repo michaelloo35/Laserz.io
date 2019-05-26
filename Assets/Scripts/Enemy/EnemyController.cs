@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
     public int id;
     public EnemyStatus enemyStatus;
 
-    public float baseSpeed =0.8f;
+    public float baseSpeed = 0.8f;
     public float stoppingDistance;
 
     public Transform player;
@@ -41,7 +41,7 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerController>().TakeDamage(15);
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(15, gameObject);
         }
     }
 

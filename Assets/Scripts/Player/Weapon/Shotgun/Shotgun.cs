@@ -105,7 +105,8 @@ public class Shotgun : Weapon
 
         foreach (var item in dmgMap)
         {
-            item.Key.TakeDamage(item.Value);
+            GameObject playerHoldingThisWeapon = transform.parent.gameObject;
+            item.Key.TakeDamage(item.Value, playerHoldingThisWeapon);
         }
     }
 

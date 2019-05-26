@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
@@ -14,6 +13,7 @@ public class PlayerSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Screen.SetResolution(1920, 1080, true,144);
         players = new Transform[playerCount];
         enemies = new Transform[enemyCount];
         SpawnPlayers(playerCount);
@@ -40,10 +40,9 @@ public class PlayerSpawner : MonoBehaviour
             enemies[id] = enemy.transform;
         }
     }
-    
+
     private void InitializeCameraManager()
     {
         GetComponent<CameraManager>().Initialize(players);
     }
-    
 }

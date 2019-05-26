@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private readonly float MAX_HEALTH = 100;
     public int id;
     public TextMeshProUGUI playerName;
+    public TextMeshProUGUI killed;
+    public int killCounter;
     public float health = 100;
     public PlayerStatus playerStatus;
     public PlayerMovement playerMovement;
@@ -20,15 +22,15 @@ public class PlayerController : MonoBehaviour
     public void Initialize(int playerId)
     {
         id = playerId;
+        playerStatus = new PlayerStatus();
         playerName.SetText("PLAYER " + id);
         playerMovement = new PlayerMovement(playerId);
-        playerStatus = new PlayerStatus();
         weapon.Initialize(playerId, playerStatus);
+        killed.SetText("");
     }
 
     public void Update()
     {
-
         if (!playerStatus.blocked)
         {
             playerMovement.Move(transform);
@@ -39,21 +41,21 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, GameObject attacker)
     {
         var damageTextPosition = new Vector3(transform.position.x, transform.position.y + 0.3f);
         var damageText = Instantiate(damageTextPrefab, damageTextPosition, Quaternion.identity);
         damageText.Initialize(amount);
-        Destroy(damageText.gameObject,0.5f);
+        Destroy(damageText.gameObject, 0.5f);
         health -= amount;
         healthBar.fillAmount = health / MAX_HEALTH;
         if (health <= 0)
         {
-            Die();
+            Die(attacker);
         }
     }
 
-    public void Die()
+    public void Die(GameObject caller)
     {
         playerStatus.dead = true;
         GameObject deathEffect = Instantiate(deathAnimationPrefab,
@@ -61,6 +63,16 @@ public class PlayerController : MonoBehaviour
         Destroy(deathEffect, 3.0f);
         Respawn();
         playerStatus.dead = false;
+        
+        if (caller.CompareTag("Player"))
+        {
+            caller.GetComponent<PlayerController>().UpdateKillCounter();
+        }
+    }
+
+    public void UpdateKillCounter()
+    {
+        killed.SetText((++killCounter).ToString());
     }
 
     private void Respawn()

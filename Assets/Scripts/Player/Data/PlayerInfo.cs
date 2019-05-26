@@ -5,5 +5,6 @@ namespace Player
         private readonly string playerName;
         private readonly int playerId;
         private int killCount;
+        private readonly string killed;
     }
 }
