@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = System.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -81,12 +77,7 @@ public class PlayerController : MonoBehaviour
 
     private void Respawn()
     {
-        var random = new Random(Convert.ToInt32(Time.time));
-        var spawnLocations = boardManager.spawnLocations();
-        var selectedLocation = spawnLocations.ElementAt(random.Next(0, spawnLocations.Count));
-
-        var vector3 = selectedLocation.transform.position;
-        transform.position = vector3;
+        transform.position = boardManager.getSpawnPoint();
         health = MAX_HEALTH;
         healthBar.fillAmount = health / MAX_HEALTH;
     }

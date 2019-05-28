@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.Experimental.VFX;
-using Random = UnityEngine.Random;
+using UnityRandom = UnityEngine.Random;
+using SystemRandom = System.Random;
 
 public class BoardManager : MonoBehaviour
 {
@@ -35,7 +34,7 @@ public class BoardManager : MonoBehaviour
         {
             for (int y = -1; y < rows + 1; y++)
             {
-                GameObject toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
+                GameObject toInstantiate = floorTiles[UnityRandom.Range(0, floorTiles.Length)];
                 if (x == -1 || x == columns || y == -1 || y == rows)
                 {
                     toInstantiate = wallTile;
@@ -61,17 +60,15 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    public List<GameObject> spawnLocations()
+    public Vector3 getSpawnPoint()
     {
         if (spawners == null)
         {
-            var threethrees = new Vector3(3.0f, 3.0f, 3.0f);
-            var tmp = new GameObject();
-            tmp.transform.position = threethrees;
-            return new List<GameObject> {tmp};
+            return calculateMapCenter();
         }
 
-        return spawners;
+        var random = new SystemRandom(Convert.ToInt32(Time.time));
+        return spawners.ElementAt(random.Next(0, spawners.Count)).transform.position;
     }
 
     private void Start()
@@ -87,7 +84,7 @@ public class BoardManager : MonoBehaviour
 
     private void InitialiseSpawnPoints()
     {
-        Vector3 center = (downLeftCorner * tileSize + upRightCorner * tileSize) / 2.0f;
+        Vector3 center = calculateMapCenter();
 
         for (int i = 0; i < 5; i++)
         {
@@ -97,5 +94,10 @@ public class BoardManager : MonoBehaviour
             var spawner = Instantiate(spawnerPrefab, new Vector3((float) x, (float) y), Quaternion.identity);
             spawners.Add(spawner);
         }
+    }
+
+    private Vector2 calculateMapCenter()
+    {
+        return (downLeftCorner * tileSize + upRightCorner * tileSize) / 2.0f;
     }
 }
