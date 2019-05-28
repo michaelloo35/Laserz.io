@@ -72,12 +72,14 @@ public class PlayerController : MonoBehaviour,Damagable
 
     public void UpdateKillCounter()
     {
+        transform.localScale += new Vector3(0.2f,0.2f);
         killed.SetText((++killCounter).ToString());
     }
 
     private void Respawn()
     {
         transform.position = boardManager.getSpawnPoint();
+        transform.localScale = Vector2.one;
         health = MAX_HEALTH;
         healthBar.fillAmount = health / MAX_HEALTH;
     }
