@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 665793189}
   - component: {fileID: 665793191}
   - component: {fileID: 665793192}
+  - component: {fileID: 665793193}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -152,8 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 5700988718832972714, guid: e4b06a3748f24d54f94c716539788ed9,
-    type: 3}
-  enemyPrefab: {fileID: 5838763901663286219, guid: 6fe6da7ea55ef3d49bccf75b4ab7610c,
     type: 3}
 --- !u!4 &665793190
 Transform:
@@ -212,6 +211,23 @@ MonoBehaviour:
   cam: {fileID: 1799424153}
   bufferOut: 100
   bufferIn: 150
+--- !u!114 &665793193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665793188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20424cb9c1b54e79a77df71a32903059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 5838763901663286219, guid: 6fe6da7ea55ef3d49bccf75b4ab7610c,
+    type: 3}
+  boardManager: {fileID: 665793191}
+  spawningInterval: 3
+  enemiesPerSpawn: 1
 --- !u!1 &1799424151
 GameObject:
   m_ObjectHideFlags: 0

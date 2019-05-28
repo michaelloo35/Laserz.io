@@ -46,7 +46,8 @@
               <e p="Weapon.cs" t="Include" />
             </e>
           </e>
-          <e p="PlayerSpawner" t="Include">
+          <e p="Spawners" t="Include">
+            <e p="EnemySpawner.cs" t="Include" />
             <e p="PlayerSpawner.cs" t="Include" />
           </e>
         </e>
