@@ -566,6 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3d558fc1dc15440acf598d1987cee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardManager: {fileID: 0}
   id: 0
   playerName: {fileID: 720104150711074268}
   killed: {fileID: 2351510716323155857}
