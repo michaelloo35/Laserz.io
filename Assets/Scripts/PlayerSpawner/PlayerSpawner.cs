@@ -13,7 +13,7 @@ public class PlayerSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Screen.SetResolution(1920, 1080, true,144);
+        Screen.SetResolution(1920, 1080, true, 144);
         players = new Transform[playerCount];
         enemies = new Transform[enemyCount];
         SpawnPlayers(playerCount);
@@ -26,7 +26,7 @@ public class PlayerSpawner : MonoBehaviour
         for (int id = 0; id < numberOfPlayers; id++)
         {
             var player = Instantiate(playerPrefab, new Vector3(0, id), Quaternion.identity);
-            player.Initialize(id);
+            player.Initialize(id, gameObject.GetComponent<BoardManager>());
             players[id] = player.transform;
         }
     }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +8,7 @@ using Random = System.Random;
 
 public class PlayerController : MonoBehaviour
 {
+    public BoardManager boardManager;
     private readonly float MAX_HEALTH = 100;
     public int id;
     public TextMeshProUGUI playerName;
@@ -19,9 +22,10 @@ public class PlayerController : MonoBehaviour
     public Image healthBar;
     public DisplayDamage damageTextPrefab;
 
-    public void Initialize(int playerId)
+    public void Initialize(int playerId, BoardManager boardManager)
     {
         id = playerId;
+        this.boardManager = boardManager;
         playerStatus = new PlayerStatus();
         playerName.SetText("PLAYER " + id);
         playerMovement = new PlayerMovement(playerId);
@@ -63,7 +67,7 @@ public class PlayerController : MonoBehaviour
         Destroy(deathEffect, 3.0f);
         Respawn();
         playerStatus.dead = false;
-        
+
         if (caller.CompareTag("Player"))
         {
             caller.GetComponent<PlayerController>().UpdateKillCounter();
@@ -78,9 +82,11 @@ public class PlayerController : MonoBehaviour
     private void Respawn()
     {
         var random = new Random(Convert.ToInt32(Time.time));
-        transform.position = new Vector3(
-            random.Next() * (float) random.NextDouble() % 4,
-            random.Next() * (float) random.NextDouble() % 3);
+        var spawnLocations = boardManager.spawnLocations();
+        var selectedLocation = spawnLocations.ElementAt(random.Next(0, spawnLocations.Count));
+
+        var vector3 = selectedLocation.transform.position;
+        transform.position = vector3;
         health = MAX_HEALTH;
         healthBar.fillAmount = health / MAX_HEALTH;
     }

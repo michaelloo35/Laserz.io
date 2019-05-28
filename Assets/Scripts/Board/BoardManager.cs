@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Experimental.VFX;
 using Random = UnityEngine.Random;
 
 public class BoardManager : MonoBehaviour
 {
-    public int columns = 16;
+    public int columns;
 
-    public int rows = 12;
+    public int rows;
 
     private float tileSize = 0.32f;
-
-    public Count wallCount = new Count(50, 80);
 
     public GameObject[] floorTiles;
 
@@ -19,39 +20,12 @@ public class BoardManager : MonoBehaviour
 
     private Transform boardHolder;
 
-    private List<Vector3> gridPositions = new List<Vector3>();
-
     public GameObject spawnerPrefab;
     public List<GameObject> spawners = new List<GameObject>();
     public float spawnersR;
 
-    public Vector2 downLeftCorner = new Vector2();
-    public Vector2 upRightCorner = new Vector2();
-
-    public class Count
-    {
-        public int minimum;
-        public int maximum;
-
-        public Count(int min, int max)
-        {
-            minimum = min;
-            maximum = max;
-        }
-    }
-
-    void InitialiseList()
-    {
-        gridPositions.Clear();
-
-        for (int x = 0; x < columns - 1; x++)
-        {
-            for (int y = 0; y < rows - 1; y++)
-            {
-                gridPositions.Add(new Vector3(x * tileSize, y * tileSize));
-            }
-        }
-    }
+    public Vector2 downLeftCorner;
+    public Vector2 upRightCorner;
 
     void BoardSetup()
     {
@@ -87,25 +61,18 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    Vector3 RandomPosition()
+    public List<GameObject> spawnLocations()
     {
-        int randomIndex = Random.Range(0, gridPositions.Count);
-        Vector3 randomPosition = gridPositions[randomIndex];
-        gridPositions.RemoveAt(randomIndex);
-        return randomPosition;
-    }
-
-    void LayoutObjectAtRandom(GameObject tile, int minimum, int maximum)
-    {
-        int objectCount = Random.Range(minimum, maximum + 1);
-
-        for (int i = 0; i < objectCount; i++)
+        if (spawners == null)
         {
-            Vector3 randomPosition = RandomPosition();
-            Instantiate(tile, randomPosition, Quaternion.identity);
+            var threethrees = new Vector3(3.0f, 3.0f, 3.0f);
+            var tmp = new GameObject();
+            tmp.transform.position = threethrees;
+            return new List<GameObject> {tmp};
         }
-    }
 
+        return spawners;
+    }
 
     private void Start()
     {
@@ -116,8 +83,6 @@ public class BoardManager : MonoBehaviour
     {
         BoardSetup();
         InitialiseSpawnPoints();
-//        InitialiseList();
-//        LayoutObjectAtRandom(wallTile, wallCount.minimum, wallCount.maximum);
     }
 
     private void InitialiseSpawnPoints()
