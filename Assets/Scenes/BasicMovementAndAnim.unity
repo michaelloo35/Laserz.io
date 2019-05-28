@@ -208,8 +208,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4404aba7a75734ab1f3f96de057622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPositions: []
-  mainCamera: {fileID: 1799424153}
+  targets: []
+  cam: {fileID: 1799424153}
+  bufferOut: 100
+  bufferIn: 150
 --- !u!1 &1799424151
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +256,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.3
+  orthographic size: 2.2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
