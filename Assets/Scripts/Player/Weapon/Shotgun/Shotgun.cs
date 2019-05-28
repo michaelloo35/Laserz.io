@@ -83,15 +83,15 @@ public class Shotgun : Weapon
 
     private void DealDamage()
     {
-        Dictionary<PlayerController, float> dmgMap = new Dictionary<PlayerController, float>();
+        Dictionary<Damagable, float> dmgMap = new Dictionary<Damagable, float>();
         for (int i = -spread; i < spread; i++)
         {
             var shootAngle = Quaternion.Euler(0, 0, i * density) * firePoint.up;
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, shootAngle, shootingDistance);
 
-            if (hitInfo && hitInfo.collider.CompareTag("Player"))
+            if (hitInfo && hitInfo.collider.GetComponent<Damagable>() != null)
             {
-                var player = hitInfo.collider.gameObject.GetComponent<PlayerController>();
+                var player = hitInfo.collider.gameObject.GetComponent<Damagable>();
                 if (dmgMap.ContainsKey(player))
                 {
                     dmgMap[player] += damage;

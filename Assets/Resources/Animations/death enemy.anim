@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: death
+  m_Name: death enemy
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,6 +19,21 @@ AnimationClip:
   m_FloatCurves: []
   m_PPtrCurves:
   - curve:
+    - time: 0
+      value: {fileID: 6641289874597826715, guid: bfac760ebb34b274f8cf998cc97cec52,
+        type: 3}
+    - time: 0.033333335
+      value: {fileID: -7492118340811005465, guid: bfac760ebb34b274f8cf998cc97cec52,
+        type: 3}
+    - time: 0.05
+      value: {fileID: 8564478605507374710, guid: bfac760ebb34b274f8cf998cc97cec52,
+        type: 3}
+    - time: 0.083333336
+      value: {fileID: 8297611214454694979, guid: bfac760ebb34b274f8cf998cc97cec52,
+        type: 3}
+    - time: 0.11666667
+      value: {fileID: 7567967063212020409, guid: bfac760ebb34b274f8cf998cc97cec52,
+        type: 3}
     - time: 0.15
       value: {fileID: -3181021173893769194, guid: bfac760ebb34b274f8cf998cc97cec52,
         type: 3}
@@ -140,6 +155,11 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
+    - {fileID: 6641289874597826715, guid: bfac760ebb34b274f8cf998cc97cec52, type: 3}
+    - {fileID: -7492118340811005465, guid: bfac760ebb34b274f8cf998cc97cec52, type: 3}
+    - {fileID: 8564478605507374710, guid: bfac760ebb34b274f8cf998cc97cec52, type: 3}
+    - {fileID: 8297611214454694979, guid: bfac760ebb34b274f8cf998cc97cec52, type: 3}
+    - {fileID: 7567967063212020409, guid: bfac760ebb34b274f8cf998cc97cec52, type: 3}
     - {fileID: -3181021173893769194, guid: bfac760ebb34b274f8cf998cc97cec52, type: 3}
     - {fileID: 3779554776598391378, guid: bfac760ebb34b274f8cf998cc97cec52, type: 3}
     - {fileID: 7990914199630272061, guid: bfac760ebb34b274f8cf998cc97cec52, type: 3}

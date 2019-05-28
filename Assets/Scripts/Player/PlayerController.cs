@@ -2,15 +2,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour,Damagable
 {
     public BoardManager boardManager;
     private readonly float MAX_HEALTH = 100;
+    public float health = 100;
     public int id;
     public TextMeshProUGUI playerName;
     public TextMeshProUGUI killed;
     public int killCounter;
-    public float health = 100;
     public PlayerStatus playerStatus;
     public PlayerMovement playerMovement;
     public Weapon weapon;

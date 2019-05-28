@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -8,8 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public float spawningInterval;
     public int enemiesPerSpawn;
     private float timeToNextSpawn;
-    private List<Transform> enemies = new List<Transform>();
-
+    private int currentId;
 
     private void Update()
     {
@@ -23,11 +21,10 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemies()
     {
-        for (int id = 0; id < enemiesPerSpawn; id++)
+        for (int i = 0; i < enemiesPerSpawn; i++)
         {
             var enemy = Instantiate(enemyPrefab, boardManager.getSpawnPoint(), Quaternion.identity);
-            enemy.Initialize(id);
-            enemies.Add(enemy.transform);
+            enemy.Initialize(++currentId);
         }
     }
 }

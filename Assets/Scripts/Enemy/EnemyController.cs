@@ -1,15 +1,23 @@
 ﻿using DefaultNamespace;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.UI;
 
-public class EnemyController : MonoBehaviour
+
+public class EnemyController : MonoBehaviour, Damagable
 {
     public int id;
     public EnemyStatus enemyStatus;
 
+    private readonly float MAX_HEALTH = 100;
+    public float health = 100;
+
     public float baseSpeed = 0.8f;
     public float stoppingDistance;
 
+    public GameObject deathAnimationPrefab;
+
+    public Image healthBar;
+    public DisplayDamage damageTextPrefab;
     public Transform player;
 
     public void Initialize(int enemyId)
@@ -65,6 +73,28 @@ public class EnemyController : MonoBehaviour
         }
 
         return closest;
+    }
+    
+    public void TakeDamage(float amount, GameObject attacker)
+    {
+        var damageTextPosition = new Vector3(transform.position.x, transform.position.y + 0.3f);
+        var damageText = Instantiate(damageTextPrefab, damageTextPosition, Quaternion.identity);
+        damageText.Initialize(amount);
+        Destroy(damageText.gameObject, 0.5f);
+        health -= amount;
+        healthBar.fillAmount = health / MAX_HEALTH;
+        if (health <= 0)
+        {
+            Die(attacker);
+        }
+    }
+    
+    public void Die(GameObject caller)
+    {
+        GameObject deathEffect = Instantiate(deathAnimationPrefab,
+            new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
+        Destroy(deathEffect, 3.0f);
+        Destroy(gameObject);
     }
 
     private float speedFunction(float distance)
