@@ -18,7 +18,7 @@ public class DisplayDamage : MonoBehaviour
     {
         Vector3 moveVector = new Vector3(0.0f, hoveringSpeed, 0.0f);
         transform.position += moveVector * Time.deltaTime;
-        byte faceColorA = Convert.ToByte(damageText.faceColor.a * 0.9);
+        byte faceColorA = Convert.ToByte(damageText.faceColor.a * 0.98);
         damageText.faceColor = new Color32(
             damageText.faceColor.r, 
             damageText.faceColor.g,
