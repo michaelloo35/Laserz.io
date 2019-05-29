@@ -50,11 +50,9 @@ public class EnemyController : MonoBehaviour, Damagable
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        print("hahahah");
 
         if (Time.time > timeToNextAttack)
         {
-            print("lalalal");
             if (other.gameObject.CompareTag("Player"))
             {
                 other.gameObject.GetComponent<PlayerController>().TakeDamage(15, gameObject);
