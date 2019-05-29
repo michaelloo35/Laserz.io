@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 8988164825230635714}
-  fireRate: 5
-  damage: 45
+  fireRate: 1
+  damage: 100
   impactEffectPrefab: {fileID: 5494741590548537025, guid: f765451489600624ca06769c23f67139,
     type: 3}
 --- !u!212 &3424206710075701398

@@ -16,6 +16,11 @@ public class Shotgun : Weapon
     private float timeToNextFire;
 
 
+    public override string getName()
+    {
+        return "Shotgun";
+    }
+
     public override Weapon Initialize(int playerId, PlayerStatus playerStatus)
     {
         this.playerId = playerId;

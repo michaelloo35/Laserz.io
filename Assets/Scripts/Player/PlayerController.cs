@@ -1,8 +1,10 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour,Damagable
+public class PlayerController : MonoBehaviour, Damagable
 {
     public BoardManager boardManager;
     private readonly float MAX_HEALTH = 100;
@@ -13,10 +15,15 @@ public class PlayerController : MonoBehaviour,Damagable
     public int killCounter;
     public PlayerStatus playerStatus;
     public PlayerMovement playerMovement;
-    public Weapon weapon;
+    private HashSet<Weapon> heldWeapons = new HashSet<Weapon>();
+    private int currentWeaponIndex;
+    public Weapon[] startingWeapons;
+    private Weapon currentWeapon;
     public GameObject deathAnimationPrefab;
     public Image healthBar;
     public DisplayDamage damageTextPrefab;
+    public float changeWeaponDelay;
+    private float timeToNextChange;
 
     public void Initialize(int playerId, BoardManager boardManager)
     {
@@ -25,7 +32,13 @@ public class PlayerController : MonoBehaviour,Damagable
         playerStatus = new PlayerStatus();
         playerName.SetText("PLAYER " + id);
         playerMovement = new PlayerMovement(playerId);
-        weapon.Initialize(playerId, playerStatus);
+        
+        foreach (var startingWeapon in startingWeapons)
+        {
+            heldWeapons.Add(startingWeapon);
+        }
+        
+        currentWeapon = Instantiate(startingWeapons[0], transform).Initialize(playerId, playerStatus);
         killed.SetText("");
     }
 
@@ -34,10 +47,16 @@ public class PlayerController : MonoBehaviour,Damagable
         if (!playerStatus.blocked)
         {
             playerMovement.Move(transform);
-            weapon.Aim();
+            currentWeapon.Aim();
         }
 
-        weapon.Shoot();
+        if (Input.GetAxisRaw($"Change_{id}") > 0)
+        {
+            ChangeWeapon();
+        }
+        
+
+        currentWeapon.Shoot();
     }
 
 
@@ -72,7 +91,7 @@ public class PlayerController : MonoBehaviour,Damagable
 
     public void UpdateKillCounter()
     {
-        transform.localScale += new Vector3(0.2f,0.2f);
+        transform.localScale += new Vector3(0.2f, 0.2f);
         killed.SetText((++killCounter).ToString());
     }
 
@@ -82,5 +101,21 @@ public class PlayerController : MonoBehaviour,Damagable
         transform.localScale = Vector2.one;
         health = MAX_HEALTH;
         healthBar.fillAmount = health / MAX_HEALTH;
+    }
+
+    public void ChangeWeapon()
+    {
+        if (Time.time > timeToNextChange)
+        {
+            currentWeaponIndex = (currentWeaponIndex + 1) % heldWeapons.Count;
+            var newWeapon = Instantiate(heldWeapons.ElementAt(currentWeaponIndex), transform)
+                .Initialize(id, playerStatus);
+            newWeapon.transform.position = currentWeapon.transform.position;
+            newWeapon.transform.rotation = currentWeapon.transform.rotation;
+            Destroy(currentWeapon.gameObject);
+            currentWeapon = newWeapon;
+            
+            timeToNextChange = Time.time + changeWeaponDelay;
+        }
     }
 }

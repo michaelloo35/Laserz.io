@@ -13,6 +13,11 @@ public class Laser : Weapon
     private float timeToNextFire;
 
 
+    public override string getName()
+    {
+        return "Laser";
+    }
+
     public override Weapon Initialize(int playerId, PlayerStatus playerStatus)
     {
         this.playerId = playerId;
@@ -62,14 +67,14 @@ public class Laser : Weapon
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.up);
             if (hitInfo)
             {
-                DrawLine(firePoint.position, hitInfo.point, charge / 5.0f);
+                DrawLine(firePoint.position, hitInfo.point, charge*2.0f );
             }
             else
             {
-                DrawLine(firePoint.position, firePoint.up.normalized * 999, charge / 5.0f);
+                DrawLine(firePoint.position, firePoint.up.normalized * 999, charge *2.0f );
             }
 
-            if (charge > 1.0f)
+            if (charge > 0.15f)
             {
                 Fire();
                 charge = 0.0f;
@@ -92,9 +97,9 @@ public class Laser : Weapon
         {
             ImpactEffect(hitInfo);
             GameObject playerHoldingThisWeapon = transform.parent.gameObject;
-            if (hitInfo.collider.CompareTag("Player"))
+            if (hitInfo.collider.GetComponent<Damagable>() != null)
                 hitInfo.collider.gameObject
-                    .GetComponent<PlayerController>()
+                    .GetComponent<Damagable>()
                     .TakeDamage(damage, playerHoldingThisWeapon);
         }
     }
