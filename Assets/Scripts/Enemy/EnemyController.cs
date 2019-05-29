@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour, Damagable
 
     public float baseSpeed = 0.8f;
     public float stoppingDistance;
+    public float attackSpeed = 1.0f;
+    private float timeToNextAttack;
 
     public GameObject deathAnimationPrefab;
 
@@ -45,11 +47,19 @@ public class EnemyController : MonoBehaviour, Damagable
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+
+    private void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        print("hahahah");
+
+        if (Time.time > timeToNextAttack)
         {
-            other.gameObject.GetComponent<PlayerController>().TakeDamage(15, gameObject);
+            print("lalalal");
+            if (other.gameObject.CompareTag("Player"))
+            {
+                other.gameObject.GetComponent<PlayerController>().TakeDamage(15, gameObject);
+                timeToNextAttack = Time.time + 1.0f / attackSpeed;
+            }
         }
     }
 
@@ -74,7 +84,7 @@ public class EnemyController : MonoBehaviour, Damagable
 
         return closest;
     }
-    
+
     public void TakeDamage(float amount, GameObject attacker)
     {
         var damageTextPosition = new Vector3(transform.position.x, transform.position.y + 0.3f);
@@ -88,7 +98,7 @@ public class EnemyController : MonoBehaviour, Damagable
             Die(attacker);
         }
     }
-    
+
     public void Die(GameObject caller)
     {
         GameObject deathEffect = Instantiate(deathAnimationPrefab,
