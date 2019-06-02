@@ -99,6 +99,8 @@ public class PlayerController : MonoBehaviour, Damagable
     {
         transform.position = boardManager.getSpawnPoint();
         transform.localScale = Vector2.one;
+        killCounter = 0;
+        killed.SetText(killCounter.ToString());
         health = MAX_HEALTH;
         healthBar.fillAmount = health / MAX_HEALTH;
     }
