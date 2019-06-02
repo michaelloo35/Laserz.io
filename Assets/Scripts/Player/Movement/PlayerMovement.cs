@@ -14,6 +14,6 @@ public class PlayerMovement
         PlayerMoveInputs playerMoveInputs = new PlayerMoveInputs(playerId);
 
         Vector3 moveVector = new Vector3(playerMoveInputs.MoveXAxis, playerMoveInputs.MoveYAxis, 0.0f);
-        transform.position += moveVector * Time.deltaTime;
+        transform.position += moveVector * Time.deltaTime * 1.1f;
     }
 }

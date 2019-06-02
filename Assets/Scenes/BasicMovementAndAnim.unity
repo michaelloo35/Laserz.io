@@ -195,6 +195,7 @@ MonoBehaviour:
   spawnersR: 3
   downLeftCorner: {x: 0, y: 0}
   upRightCorner: {x: 0, y: 0}
+  spawnerNumber: 10
 --- !u!114 &665793192
 MonoBehaviour:
   m_ObjectHideFlags: 0

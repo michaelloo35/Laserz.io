@@ -19,7 +19,7 @@ public class PlayerSpawner : MonoBehaviour
     {
         for (int id = 0; id < numberOfPlayers; id++)
         {
-            var player = Instantiate(playerPrefab, new Vector3(0, id), Quaternion.identity);
+            var player = Instantiate(playerPrefab, new Vector3(id * 5, 0), Quaternion.identity);
             player.Initialize(id, gameObject.GetComponent<BoardManager>());
             players[id] = player.transform;
         }

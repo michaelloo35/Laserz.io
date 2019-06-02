@@ -44,6 +44,10 @@ public class PlayerController : MonoBehaviour, Damagable
 
     public void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         if (!playerStatus.blocked)
         {
             playerMovement.Move(transform);
@@ -79,6 +83,7 @@ public class PlayerController : MonoBehaviour, Damagable
         playerStatus.dead = true;
         GameObject deathEffect = Instantiate(deathAnimationPrefab,
             new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
+        deathEffect.transform.localScale = transform.localScale;
         Destroy(deathEffect, 3.0f);
         Respawn();
         playerStatus.dead = false;

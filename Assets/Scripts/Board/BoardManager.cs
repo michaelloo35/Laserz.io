@@ -25,6 +25,7 @@ public class BoardManager : MonoBehaviour
 
     public Vector2 downLeftCorner;
     public Vector2 upRightCorner;
+    public int spawnerNumber = 5;
 
     void BoardSetup()
     {
@@ -67,7 +68,7 @@ public class BoardManager : MonoBehaviour
             return calculateMapCenter();
         }
 
-        var random = new SystemRandom(Convert.ToInt32(Time.time));
+        var random = new SystemRandom();
         return spawners.ElementAt(random.Next(0, spawners.Count)).transform.position;
     }
 
@@ -86,10 +87,10 @@ public class BoardManager : MonoBehaviour
     {
         Vector3 center = calculateMapCenter();
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < spawnerNumber; i++)
         {
-            var x = center.x + spawnersR * Math.Cos(2 * Math.PI * i / 5);
-            var y = center.y + spawnersR * Math.Sin(2 * Math.PI * i / 5);
+            var x = center.x + spawnersR * Math.Cos(2 * Math.PI * i / spawnerNumber);
+            var y = center.y + spawnersR * Math.Sin(2 * Math.PI * i / spawnerNumber);
 
             var spawner = Instantiate(spawnerPrefab, new Vector3((float) x, (float) y), Quaternion.identity);
             spawners.Add(spawner);
