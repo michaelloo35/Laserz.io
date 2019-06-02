@@ -2,6 +2,7 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, Damagable
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour, Damagable
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            Application.Quit();
+            SceneManager.LoadScene( "Menu");
         }
         if (!playerStatus.blocked)
         {
